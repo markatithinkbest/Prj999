@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">AAA我的台北之行</string>
+
+    <string name="title_section1">我的選擇</string>
+    <string name="title_section2">全部景點</string>
+    <string name="title_section3">關於我</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+</resources>
