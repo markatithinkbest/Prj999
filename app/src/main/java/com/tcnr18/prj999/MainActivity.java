@@ -204,7 +204,10 @@ public class MainActivity extends ActionBarActivity
         }
 
         private void processJson() {
-
+            if (Status.IMPORTED_DONE){
+                Log.d(LOG_TAG,"IMPORTED_DONE , NO NEED TO processJson()");
+                return;
+            }
 
             InputStream is = null;
             String strJson = null;
@@ -299,7 +302,7 @@ public class MainActivity extends ActionBarActivity
 //
 //            resolver.insert(StatusProvider.CONTENT_URL, values);
 
-
+            Status.IMPORTED_DONE = true;
         }
 
 
