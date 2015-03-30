@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -203,9 +204,29 @@ public class MainActivity extends ActionBarActivity
             return rootView;
         }
 
+
+        private Cursor getMembers(String grpId) {
+            Uri uri = AttractionsProvider.CONTENT_URL;
+            String[] projection = new String[]{AttractionsProvider.COLUMN_ID,
+                    AttractionsProvider.COLUMN_TITLE, AttractionsProvider.COLUMN_ROWNUMBER};
+            //
+//            String selection = MembersProvider.COLUMN_GUP + " = '" + grpId
+//                    + "'";
+            String selection =null;
+
+
+            String[] selectionArgs = null;
+            String sortOrder =null;
+//
+//            return managedQuery(uri, projection, selection, selectionArgs,
+//                    sortOrder);
+            return null;
+        }
+
+
         private void processJson() {
-            if (Status.IMPORTED_DONE){
-                Log.d(LOG_TAG,"IMPORTED_DONE , NO NEED TO processJson()");
+            if (Status.IMPORTED_DONE) {
+                Log.d(LOG_TAG, "IMPORTED_DONE , NO NEED TO processJson()");
                 return;
             }
 
@@ -230,7 +251,7 @@ public class MainActivity extends ActionBarActivity
 
 
 //            if (cursor.moveToFirst()) {
-                // not to import again
+            // not to import again
 //                return;
 //                do {
 //                   // long id = cursor.getLong(0);
