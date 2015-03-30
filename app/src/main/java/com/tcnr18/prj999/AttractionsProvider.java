@@ -21,14 +21,15 @@ public class AttractionsProvider extends ContentProvider {
 
     // Assigned to a content provider so any application can access it
     // cpcontacts is the virtual directory in the provider
-    static final String URL = "content://" + PROVIDER_NAME + "/cpcontacts";
+    static final String VIRTUAL_DIR = "cpcontacts";
+    //    static final String URL = "content://" + PROVIDER_NAME + "/cpcontacts";
+    static final String URL = "content://" + PROVIDER_NAME + "/" + VIRTUAL_DIR;
+
     static final Uri CONTENT_URL = Uri.parse(URL);
 
     static final String COLUMN_ID = "_ID";
     static final String COLUMN_ROWNUMBER = "rownumber";
     static final String COLUMN_TITLE = "stitle";
-
-
 
 
     static final int uriCode = 1;
@@ -40,20 +41,22 @@ public class AttractionsProvider extends ContentProvider {
 
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI(PROVIDER_NAME, "cpcontacts", uriCode);
+//        uriMatcher.addURI(PROVIDER_NAME, "cpcontacts", uriCode);
+        uriMatcher.addURI(PROVIDER_NAME, VIRTUAL_DIR, uriCode);
+
     }
 
     private SQLiteDatabase sqlDB;
     static final String DATABASE_NAME = "taipei";
     static final String TABLE_NAME = "attractions";
-    static final int DATABASE_VERSION = 11; // need to increase when change table structure
+    static final int DATABASE_VERSION = 13; // need to increase when change table structure
     static final String CREATE_DB_TABLE = " CREATE TABLE " + TABLE_NAME
             + " ("
-            + COLUMN_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_ROWNUMBER +" INTEGER, "
-            + COLUMN_TITLE +" TEXT NOT NULL "
+            + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COLUMN_ROWNUMBER + " INTEGER, "
+            + COLUMN_TITLE + " TEXT NOT NULL "
 
-            +");";
+            + ");";
 
     @Override
     public boolean onCreate() {
@@ -109,14 +112,14 @@ public class AttractionsProvider extends ContentProvider {
 
             // vnd.android.cursor.dir/cpcontacts states that we expect multiple pieces of data
             case uriCode:
-                return "vnd.android.cursor.dir/cpcontacts";
+//                return "vnd.android.cursor.dir/cpcontacts";
+                return "vnd.android.cursor.dir/" + VIRTUAL_DIR;
+
 
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
     }
-
-
 
 
     // Used to insert a new row into the provider
